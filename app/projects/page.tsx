@@ -72,7 +72,7 @@ export default async function ProjectsPage() {
                     <div className="flex gap-3 pt-2">
                       {project.githubUrl && (
                         <Button variant="outline" size="sm" asChild>
-                          <Link href={project.githubUrl} target="_blank">
+                          <Link href={project.githubUrl} target="blank">
                             <Github className="mr-2 h-4 w-4" />
                             Code
                           </Link>
@@ -80,7 +80,7 @@ export default async function ProjectsPage() {
                       )}
                       {project.liveUrl && (
                         <Button size="sm" asChild>
-                          <Link href={project.liveUrl} target="_blank">
+                          <Link href={project.liveUrl} target="blank">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Live Demo
                           </Link>
@@ -130,14 +130,14 @@ export default async function ProjectsPage() {
                     <div className="flex gap-2 pt-2">
                       {project.githubUrl && (
                         <Button variant="outline" size="sm" asChild>
-                          <Link href={project.githubUrl} target="_blank">
+                          <Link href={project.githubUrl} target="blank">
                             <Github className="h-4 w-4" />
                           </Link>
                         </Button>
                       )}
                       {project.liveUrl && (
                         <Button size="sm" asChild>
-                          <Link href={project.liveUrl} target="_blank">
+                          <Link href={project.liveUrl} target="blank">
                             <ExternalLink className="h-4 w-4" />
                           </Link>
                         </Button>

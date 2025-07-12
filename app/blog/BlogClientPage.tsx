@@ -291,43 +291,37 @@ export default function BlogClientPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">Blog</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Insights, tutorials, and thoughts on full-stack development, DevOps
-            practices, and the latest in web technology.
-          </p>
-        </div>
-
-        <BlogContent
-          featuredPosts={featuredPosts}
-          allPosts={allPosts}
-          allTags={allTags}
-          loading={loading}
-        />
-
-        {/* Newsletter Signup */}
-        <section className="mt-20 text-center">
-          <Card className="max-w-2xl mx-auto p-8">
-            <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-            <p className="text-muted-foreground mb-6">
-              Get notified when I publish new articles about development and
-              DevOps.
-            </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <Input placeholder="Enter your email" type="email" />
-              <Button>Subscribe</Button>
-            </div>
-          </Card>
-        </section>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl lg:text-5xl font-bold mb-6">Blog</h1>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          Journey, Insights, tutorials, and thoughts on full-stack development, DevOps
+          practices, and the latest in web technology.
+        </p>
       </div>
 
-      <Footer />
+      <BlogContent
+        featuredPosts={featuredPosts}
+        allPosts={allPosts}
+        allTags={allTags}
+        loading={loading}
+      />
+
+      {/* Newsletter Signup */}
+      <section className="mt-20 text-center">
+        <Card className="max-w-2xl mx-auto p-8">
+          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+          <p className="text-muted-foreground mb-6">
+            Get notified when I publish new articles about development and
+            DevOps.
+          </p>
+          <div className="flex gap-4 max-w-md mx-auto">
+            <Input placeholder="Enter your email" type="email" />
+            <Button>Subscribe</Button>
+          </div>
+        </Card>
+      </section>
     </div>
   );
 }

@@ -78,10 +78,6 @@ export default function AdminLogin() {
               Sign In
             </Button>
           </form>
-
-          <div className="mt-4 text-sm text-muted-foreground text-center">
-            Demo credentials: admin@johndoe.dev / admin123
-          </div>
         </CardContent>
       </Card>
     </div>

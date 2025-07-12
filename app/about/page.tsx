@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn more about John Doe, a DevOps-focused Full-Stack Developer with expertise in modern web technologies and cloud infrastructure.",
+    "Learn more about Ramy Bouchareb, a DevOps-focused Full-Stack Developer with expertise in modern web technologies and cloud infrastructure.",
 }
 
 export default function AboutPage() {
@@ -36,20 +36,20 @@ export default function AboutPage() {
               <Card className="p-6">
                 <div className="text-center mb-6">
                   <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-white font-bold text-4xl">JD</span>
+                    <span className="text-white font-bold text-4xl">RB</span>
                   </div>
-                  <h2 className="text-2xl font-bold mb-2">John Doe</h2>
-                  <p className="text-muted-foreground">DevOps Full-Stack Developer</p>
+                  <h2 className="text-2xl font-bold mb-2">Ramy Bouchareb</h2>
+                  <p className="text-muted-foreground">DevOps enthusiast And FullStack Developer</p>
                 </div>
 
                 <div className="space-y-4 text-sm">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span>San Francisco, CA</span>
+                    <span>Algiers, Algeria</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span>5+ Years Experience</span>
+                    <span>2+ Years Experience</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-muted-foreground" />
@@ -58,7 +58,7 @@ export default function AboutPage() {
                 </div>
 
                 <Button className="w-full mt-6" asChild>
-                  <Link href="/resume.pdf" target="_blank">
+                  <Link href="/resume.pdf" target="blank">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </Link>

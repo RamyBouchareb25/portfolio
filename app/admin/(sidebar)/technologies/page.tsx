@@ -140,7 +140,7 @@ export default function TechnologiesPage() {
                 {tech.description && <p className="text-sm text-muted-foreground">{tech.description}</p>}
                 {tech.website && (
                   <Button variant="outline" size="sm" asChild>
-                    <a href={tech.website} target="_blank" rel="noopener noreferrer">
+                    <a href={tech.website} target="blank" rel="noopener noreferrer">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Visit Website
                     </a>

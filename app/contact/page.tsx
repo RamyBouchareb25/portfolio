@@ -106,25 +106,25 @@ export default async function ContactPage() {
               <CardContent className="px-0 pb-0">
                 <div className="grid grid-cols-2 gap-4">
                   <Button variant="outline" asChild>
-                    <Link href={settings.githubUrl} target="_blank">
+                    <Link href={settings.githubUrl} target="blank">
                       <Github className="mr-2 h-4 w-4" />
                       GitHub
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href={settings.linkedinUrl} target="_blank">
+                    <Link href={settings.linkedinUrl} target="blank">
                       <Linkedin className="mr-2 h-4 w-4" />
                       LinkedIn
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href={settings.twitterUrl} target="_blank">
+                    <Link href={settings.twitterUrl} target="blank">
                       <Twitter className="mr-2 h-4 w-4" />
                       Twitter
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href="/files/resume.pdf" target="_blank">
+                    <Link href="/files/resume.pdf" target="blank">
                       📄 Resume
                     </Link>
                   </Button>
@@ -180,7 +180,7 @@ export default async function ContactPage() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link href="/files/resume.pdf" target="_blank">
+                <Link href="/files/resume.pdf" target="blank">
                   📄 View My Resume
                 </Link>
               </Button>

@@ -125,3 +125,17 @@ model Settings {
 
   @@map("settings")
 }
+
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // In production, this should be hashed
+  name      String?
+  role      String   @default("user") // user, admin, etc.
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}

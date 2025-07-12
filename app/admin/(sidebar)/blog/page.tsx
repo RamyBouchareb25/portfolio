@@ -157,7 +157,7 @@ export default function AdminBlog() {
                 <div className="flex gap-2 ml-4">
                   {post.published && (
                     <Button variant="outline" size="sm" asChild>
-                      <Link href={`/blog/${post.slug}`} target="_blank">
+                      <Link href={`/blog/${post.slug}`} target="blank">
                         <Eye className="h-4 w-4" />
                       </Link>
                     </Button>

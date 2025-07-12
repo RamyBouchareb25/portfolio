@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "John Doe - DevOps Full-Stack Developer",
-    template: "%s | John Doe",
+    default: "Ramy Bouchareb - DevOps Full-Stack Developer",
+    template: "%s | Ramy Bouchareb",
   },
   description:
     "DevOps-focused Full-Stack Developer with expertise in Next.js, TypeScript, Docker, and Kubernetes. Building modern web applications with CI/CD and cloud-native tools.",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     "NestJS",
     "Cloud Native",
   ],
-  authors: [{ name: "John Doe" }],
-  creator: "John Doe",
-  publisher: "John Doe",
+  authors: [{ name: "Ramy Bouchareb" }],
+  creator: "Ramy Bouchareb",
+  publisher: "Ramy Bouchareb",
   robots: {
     index: true,
     follow: true,
@@ -44,21 +44,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://johndoe.dev",
-    title: "John Doe - DevOps Full-Stack Developer",
+    title: "Ramy Bouchareb - DevOps Full-Stack Developer",
     description: "DevOps-focused Full-Stack Developer with expertise in Next.js, TypeScript, Docker, and Kubernetes.",
-    siteName: "John Doe Portfolio",
+    siteName: "Ramy Bouchareb Portfolio",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "John Doe - DevOps Full-Stack Developer",
+        alt: "Ramy Bouchareb - DevOps Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "John Doe - DevOps Full-Stack Developer",
+    title: "Ramy Bouchareb - DevOps Full-Stack Developer",
     description: "DevOps-focused Full-Stack Developer with expertise in Next.js, TypeScript, Docker, and Kubernetes.",
     images: ["/og-image.jpg"],
     creator: "@johndoe",

@@ -135,14 +135,14 @@ export default function AdminProjects() {
                 <div className="flex gap-2">
                   {project.githubUrl && (
                     <Button variant="outline" size="sm" asChild>
-                      <Link href={project.githubUrl} target="_blank">
+                      <Link href={project.githubUrl} target="blank">
                         <Github className="h-4 w-4" />
                       </Link>
                     </Button>
                   )}
                   {project.liveUrl && (
                     <Button variant="outline" size="sm" asChild>
-                      <Link href={project.liveUrl} target="_blank">
+                      <Link href={project.liveUrl} target="blank">
                         <ExternalLink className="h-4 w-4" />
                       </Link>
                     </Button>

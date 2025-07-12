@@ -74,6 +74,7 @@ export async function getGitHubGists(username = "RamyBouchareb25"): Promise<GitH
           }
         } catch (error) {
           console.error(`Error fetching gist ${gist.id}:`, error)
+          return null
         }
 
         // Fallback if detailed fetch fails

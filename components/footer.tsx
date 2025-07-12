@@ -1,7 +1,10 @@
-import Link from "next/link"
-import { Github, Linkedin, Twitter, Mail, ExternalLink } from "lucide-react"
+import Link from "next/link";
+import { Github, Linkedin, Twitter, Mail, ExternalLink } from "lucide-react";
+import { getSettings } from "@/app/data/settings";
 
-export function Footer() {
+export async function Footer() {
+  const settings = await getSettings();
+
   return (
     <footer className="bg-background border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -9,12 +12,13 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">JD</span>
+                <span className="text-white font-bold text-sm">RB</span>
               </div>
-              <span className="font-bold text-xl">John Doe</span>
+              <span className="font-bold text-xl">Ramy Bouchareb</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              DevOps-focused Full-Stack Developer building modern web applications with cloud-native tools.
+              DevOps-focused Full-Stack Developer building modern web
+              applications with cloud-native tools.
             </p>
           </div>
 
@@ -22,22 +26,34 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/projects"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/skills" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/skills"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Skills
                 </Link>
               </li>
@@ -48,24 +64,33 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Content</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/blog"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/gists" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/gists"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Code Snippets
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  href="/contact"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
                   Contact
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://old-portfolio.johndoe.dev"
-                  target="_blank"
+                  href="https://old.ramybouchareb.me"
+                  target="blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
                 >
@@ -80,28 +105,28 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Connect</h3>
             <div className="flex space-x-4">
               <Link
-                href="https://github.com/johndoe"
+                href={settings.githubUrl}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="https://linkedin.com/in/johndoe"
+                href={settings.linkedinUrl}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
-                href="https://twitter.com/johndoe"
+                href={settings.twitterUrl}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
-                href="mailto:john@johndoe.dev"
+                href={`mailto:${settings.email}`}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
@@ -112,9 +137,11 @@ export function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Ramy Bouchareb. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -147,7 +147,7 @@ export default function CertificationsPage() {
                 {cert.credentialId && <div className="text-xs text-muted-foreground">ID: {cert.credentialId}</div>}
                 {cert.credentialUrl && (
                   <Button variant="outline" size="sm" asChild>
-                    <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer">
+                    <a href={cert.credentialUrl} target="blank" rel="noopener noreferrer">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       View Credential
                     </a>

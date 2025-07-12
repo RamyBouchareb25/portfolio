@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ExternalLink, Star, GitFork, Calendar, Code } from "lucide-react"
 import Link from "next/link"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { getGitHubGists } from "@/app/data/gists"
 import type { Metadata } from "next"
 
@@ -102,7 +102,7 @@ export default async function GistsPage() {
                         </div>
                       </div>
                       <Button variant="outline" size="sm" asChild>
-                        <Link href={gist.html_url} target="_blank">
+                        <Link href={gist.html_url} target="blank">
                           <ExternalLink className="h-4 w-4 mr-2" />
                           View on GitHub
                         </Link>
@@ -135,7 +135,7 @@ export default async function GistsPage() {
                       <div className="max-h-96 overflow-auto">
                         <SyntaxHighlighter
                           language={firstFile.language?.toLowerCase() || "text"}
-                          style={oneDark}
+                          style={dracula}
                           customStyle={{
                             margin: 0,
                             background: "transparent",
@@ -168,7 +168,7 @@ export default async function GistsPage() {
               Check out my GitHub profile for more code snippets, projects, and contributions.
             </p>
             <Button asChild>
-              <Link href="https://github.com/RamyBouchareb25" target="_blank">
+              <Link href="https://github.com/RamyBouchareb25" target="blank">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Visit My GitHub
               </Link>

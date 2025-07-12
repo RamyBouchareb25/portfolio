@@ -147,7 +147,7 @@ export default function AdminFiles() {
                         <Copy className="h-4 w-4" />
                       </Button>
                       <Button variant="outline" size="sm" asChild>
-                        <a href={file.url} target="_blank" rel="noopener noreferrer">
+                        <a href={file.url} target="blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4" />
                         </a>
                       </Button>

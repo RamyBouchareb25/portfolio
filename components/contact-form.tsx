@@ -33,7 +33,7 @@ export function ContactForm() {
         const form = document.getElementById("contact-form") as HTMLFormElement
         form?.reset()
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again.",
