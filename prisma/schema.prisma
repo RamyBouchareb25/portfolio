@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["tracing"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  longDescription String?
+  image       String?
+  technologies String[] // Array of technology names
+  githubUrl   String?
+  liveUrl     String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  category    String   // Frontend, Backend, DevOps, Database, etc.
+  level       Int      // 1-100 proficiency level
+  icon        String?  // Icon name or URL
+  color       String?  // Hex color for the skill badge
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("skills")
+}
+
+model Technology {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  category    String   // Language, Framework, Tool, Database, etc.
+  description String?
+  icon        String?  // Icon name or URL
+  color       String?  // Hex color for the technology badge
+  website     String?  // Official website
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("technologies")
+}
+
+model Certification {
+  id            String   @id @default(cuid())
+  name          String
+  issuer        String   // AWS, Google, Microsoft, etc.
+  description   String?
+  credentialId  String?
+  credentialUrl String?  // Link to verify the certification
+  issueDate     DateTime
+  expiryDate    DateTime?
+  image         String?  // Badge image
+  featured      Boolean  @default(false)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("certifications")
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String   // Rich text content
+  image       String?
+  published   Boolean  @default(false)
+  featured    Boolean  @default(false)
+  tags        String[] // Array of tags
+  readTime    Int?     // Estimated read time in minutes
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contacts")
+}
+
+model Settings {
+  id              String   @id @default(cuid())
+  siteName        String   @default("Ramy Bouchareb Portfolio")
+  siteDescription String   @default("DevOps-focused Full-Stack Developer")
+  email           String   @default("ramy@ramybouchareb.me")
+  phone           String   @default("+216 54 123 456")
+  location        String   @default("Tunis, Tunisia")
+  githubUrl       String   @default("https://github.com/RamyBouchareb25")
+  linkedinUrl     String   @default("https://linkedin.com/in/ramy-bouchareb")
+  twitterUrl      String   @default("https://twitter.com/ramybouchareb")
+  metaTitle       String   @default("Ramy Bouchareb - DevOps Full-Stack Developer")
+  metaDescription String   @default("DevOps-focused Full-Stack Developer with expertise in modern web technologies")
+  metaKeywords    String   @default("DevOps, Full-Stack Developer, Next.js, TypeScript, Docker, Kubernetes")
+  enableAnalytics Boolean  @default(true)
+  maintenanceMode Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("settings")
+}
