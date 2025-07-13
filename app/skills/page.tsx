@@ -15,26 +15,7 @@ export const metadata: Metadata = {
     "Explore my technical skills and expertise in full-stack development, DevOps, and modern web technologies.",
 }
 
-const certifications = [
-  {
-    name: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    date: "2023",
-    status: "In Progress",
-  },
-  {
-    name: "Certified Kubernetes Administrator",
-    issuer: "Cloud Native Computing Foundation",
-    date: "2023",
-    status: "In Progress",
-  },
-  {
-    name: "Docker Certified Associate",
-    issuer: "Docker Inc.",
-    date: "2022",
-    status: "Completed",
-  },
-]
+
 
 export default async function SkillsPage() {
   const skillCategories = await getSkillsByCategory()
@@ -133,27 +114,6 @@ export default async function SkillsPage() {
                 ))}
               </div>
             </Card>
-          </div>
-        </section>
-
-        {/* Certifications */}
-        <section>
-          <h2 className="text-3xl font-bold mb-8 text-center">Certifications</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert) => (
-              <Card key={cert.name} className="p-6">
-                <div className="space-y-3">
-                  <div className="flex items-start justify-between">
-                    <h3 className="font-semibold text-lg leading-tight">{cert.name}</h3>
-                    <Badge variant={cert.status === "Completed" ? "default" : "secondary"} className="ml-2">
-                      {cert.status}
-                    </Badge>
-                  </div>
-                  <p className="text-muted-foreground">{cert.issuer}</p>
-                  <p className="text-sm text-muted-foreground">{cert.date}</p>
-                </div>
-              </Card>
-            ))}
           </div>
         </section>
       </div>
