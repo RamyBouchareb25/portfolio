@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://johndoe.dev",
+    url: "https://ramybouchareb.me",
     title: "Ramy Bouchareb - DevOps Full-Stack Developer",
     description: "DevOps-focused Full-Stack Developer with expertise in Next.js, TypeScript, Docker, and Kubernetes.",
     siteName: "Ramy Bouchareb Portfolio",
@@ -61,13 +61,13 @@ export const metadata: Metadata = {
     title: "Ramy Bouchareb - DevOps Full-Stack Developer",
     description: "DevOps-focused Full-Stack Developer with expertise in Next.js, TypeScript, Docker, and Kubernetes.",
     images: ["/og-image.jpg"],
-    creator: "@johndoe",
+    creator: "@ramybouchareb",
   },
   verification: {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://johndoe.dev",
+    canonical: "https://ramybouchareb.me",
   },
 }
 

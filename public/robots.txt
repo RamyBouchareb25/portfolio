@@ -1,0 +1,40 @@
+# Robots.txt for Portfolio Website
+# Allow all crawlers access to public content
+
+User-agent: *
+
+# Allow crawling of main portfolio pages
+Allow: /
+Allow: /about
+Allow: /projects
+Allow: /skills
+Allow: /blog
+Allow: /contact
+Allow: /gists
+Allow: /certifications
+
+# Block admin areas - these should not be indexed
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+
+# Block API routes - not useful for search engines
+Disallow: /api/
+Disallow: /api/*
+
+# Block authentication pages
+Disallow: /admin/login
+
+# Block private files and uploads
+Disallow: /files/
+Disallow: /_next/
+Disallow: /_vercel/
+
+# Allow sitemap
+Allow: /sitemap.xml
+
+# Sitemap location
+Sitemap: https://ramybouchareb.me/sitemap.xml
+
+# Crawl delay (optional - be respectful to smaller servers)
+Crawl-delay: 1
