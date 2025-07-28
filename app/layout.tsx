@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { Providers } from "./providers"
+import Script from 'next/script' // Import the Script component from next/script
 
 const inter = Inter({ subsets: ["latin"] })
 
