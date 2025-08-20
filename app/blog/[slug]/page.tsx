@@ -70,9 +70,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
       <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Back Button */}
         <div className="mb-8">
@@ -274,8 +271,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </section>
       </article>
-
-      <Footer />
-    </div>
   );
 }
