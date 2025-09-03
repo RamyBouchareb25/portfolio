@@ -124,7 +124,7 @@ export default async function ContactPage() {
                     </Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href="/files/resume.pdf" target="blank">
+                    <Link href="/resume.pdf" target="blank">
                       📄 Resume
                     </Link>
                   </Button>
