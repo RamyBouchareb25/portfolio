@@ -69,7 +69,7 @@ export default async function HomePage() {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link href="/files/resume.pdf" target="blank">
+                  <Link href="/resume.pdf" target="blank">
                     <Download className="mr-2 h-4 w-4" />
                     Download CV
                   </Link>
