@@ -1,39 +1,58 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
-import { Bold, Italic, Underline, List, ListOrdered, Link, ImageIcon, Code, Quote, Save, Eye, X } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
-import ReactMarkdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Bold,
+  Italic,
+  Underline,
+  List,
+  ListOrdered,
+  Link,
+  ImageIcon,
+  Code,
+  Quote,
+  Save,
+  Eye,
+  X,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function NewBlogPost() {
-  const [title, setTitle] = useState("")
-  const [slug, setSlug] = useState("")
-  const [excerpt, setExcerpt] = useState("")
-  const [content, setContent] = useState("")
-  const [tags, setTags] = useState<string[]>([])
-  const [newTag, setNewTag] = useState("")
-  const [published, setPublished] = useState(false)
-  const [featured, setFeatured] = useState(false)
-  const [image, setImage] = useState("")
-  const [isPreview, setIsPreview] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [excerpt, setExcerpt] = useState("");
+  const [content, setContent] = useState("");
+  const [contentFormat, setContentFormat] = useState<"markdown" | "html">(
+    "markdown",
+  );
+  const [tags, setTags] = useState<string[]>([]);
+  const [newTag, setNewTag] = useState("");
+  const [published, setPublished] = useState(false);
+  const [featured, setFeatured] = useState(false);
+  const [image, setImage] = useState("");
+  const [isPreview, setIsPreview] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const router = useRouter()
-  const { toast } = useToast()
-
-  // Rich text editor state
-  const [selectedText, setSelectedText] = useState("")
-  const [cursorPosition, setCursorPosition] = useState(0)
+  const router = useRouter();
+  const { toast } = useToast();
 
   const generateSlug = (title: string) => {
     return title
@@ -41,81 +60,87 @@ export default function NewBlogPost() {
       .replace(/[^a-z0-9 -]/g, "")
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-")
-      .trim()
-  }
+      .trim();
+  };
 
   const handleTitleChange = (value: string) => {
-    setTitle(value)
+    setTitle(value);
     if (!slug || slug === generateSlug(title)) {
-      setSlug(generateSlug(value))
+      setSlug(generateSlug(value));
     }
-  }
+  };
 
   const addTag = () => {
     if (newTag && !tags.includes(newTag)) {
-      setTags([...tags, newTag])
-      setNewTag("")
+      setTags([...tags, newTag]);
+      setNewTag("");
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
-    setTags(tags.filter((tag) => tag !== tagToRemove))
-  }
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
 
   const insertFormatting = (format: string) => {
-    const textarea = document.getElementById("content") as HTMLTextAreaElement
-    if (!textarea) return
+    const textarea = document.getElementById("content") as HTMLTextAreaElement;
+    if (!textarea) return;
 
-    const start = textarea.selectionStart
-    const end = textarea.selectionEnd
-    const selectedText = content.substring(start, end)
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = content.substring(start, end);
 
-    let formattedText = ""
+    let formattedText = "";
 
     switch (format) {
       case "bold":
-        formattedText = `**${selectedText}**`
-        break
+        formattedText = `**${selectedText}**`;
+        break;
       case "italic":
-        formattedText = `*${selectedText}*`
-        break
+        formattedText = `*${selectedText}*`;
+        break;
       case "underline":
-        formattedText = `<u>${selectedText}</u>`
-        break
+        formattedText = `<u>${selectedText}</u>`;
+        break;
       case "code":
-        formattedText = selectedText.includes("\n") ? `\`\`\`\n${selectedText}\n\`\`\`` : `\`${selectedText}\``
-        break
+        formattedText = selectedText.includes("\n")
+          ? `\`\`\`\n${selectedText}\n\`\`\``
+          : `\`${selectedText}\``;
+        break;
       case "quote":
-        formattedText = `> ${selectedText}`
-        break
+        formattedText = `> ${selectedText}`;
+        break;
       case "list":
-        formattedText = `- ${selectedText}`
-        break
+        formattedText = `- ${selectedText}`;
+        break;
       case "ordered-list":
-        formattedText = `1. ${selectedText}`
-        break
+        formattedText = `1. ${selectedText}`;
+        break;
       case "link":
-        formattedText = `[${selectedText}](url)`
-        break
+        formattedText = `[${selectedText}](url)`;
+        break;
       case "image":
-        formattedText = `![${selectedText}](image-url)`
-        break
+        formattedText = `![${selectedText}](image-url)`;
+        break;
       default:
-        formattedText = selectedText
+        formattedText = selectedText;
     }
 
-    const newContent = content.substring(0, start) + formattedText + content.substring(end)
-    setContent(newContent)
+    const newContent =
+      content.substring(0, start) + formattedText + content.substring(end);
+    setContent(newContent);
 
     // Focus back to textarea
     setTimeout(() => {
-      textarea.focus()
-      textarea.setSelectionRange(start + formattedText.length, start + formattedText.length)
-    }, 0)
-  }
+      textarea.focus();
+      textarea.setSelectionRange(
+        start + formattedText.length,
+        start + formattedText.length,
+      );
+    }, 0);
+  };
 
   const handleSave = async (isDraft = true) => {
-    setLoading(true)
+    setLoading(true);
 
     try {
       const postData = {
@@ -123,37 +148,40 @@ export default function NewBlogPost() {
         slug,
         excerpt,
         content,
+        contentFormat,
         tags,
         published: isDraft ? false : published,
         featured,
         image: image || null,
-      }
-      
+      };
+
       const response = await fetch("/api/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData),
-      })
+      });
 
       if (response.ok) {
         toast({
           title: "Success",
-          description: isDraft ? "Draft saved successfully" : "Post published successfully",
-        })
-        router.push("/admin/blog")
+          description: isDraft
+            ? "Draft saved successfully"
+            : "Post published successfully",
+        });
+        router.push("/admin/blog");
       } else {
-        throw new Error("Failed to save post")
+        throw new Error("Failed to save post");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to save post",
         variant: "destructive",
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const formatToolbarButtons = [
     { icon: Bold, action: "bold", tooltip: "Bold" },
@@ -165,7 +193,7 @@ export default function NewBlogPost() {
     { icon: ListOrdered, action: "ordered-list", tooltip: "Numbered List" },
     { icon: Link, action: "link", tooltip: "Link" },
     { icon: ImageIcon, action: "image", tooltip: "Image" },
-  ]
+  ];
 
   return (
     <div className="space-y-8">
@@ -173,7 +201,9 @@ export default function NewBlogPost() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Create New Blog Post</h1>
-          <p className="text-muted-foreground">Write and publish a new article for your blog.</p>
+          <p className="text-muted-foreground">
+            Write and publish a new article for your blog.
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={() => setIsPreview(!isPreview)}>
@@ -241,6 +271,24 @@ export default function NewBlogPost() {
                       placeholder="https://example.com/image.jpg"
                     />
                   </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="contentFormat">Content Format</Label>
+                    <Select
+                      value={contentFormat}
+                      onValueChange={(value: "markdown" | "html") =>
+                        setContentFormat(value)
+                      }
+                    >
+                      <SelectTrigger id="contentFormat" className="w-full">
+                        <SelectValue placeholder="Select content format" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="markdown">Markdown</SelectItem>
+                        <SelectItem value="html">HTML</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -251,32 +299,40 @@ export default function NewBlogPost() {
                 </CardHeader>
                 <CardContent>
                   {/* Formatting Toolbar */}
-                  <div className="flex flex-wrap gap-1 p-2 border rounded-t-md bg-muted/50">
-                    {formatToolbarButtons.map((button) => (
-                      <Button
-                        key={button.action}
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => insertFormatting(button.action)}
-                        title={button.tooltip}
-                      >
-                        <button.icon className="h-4 w-4" />
-                      </Button>
-                    ))}
-                  </div>
+                  {contentFormat === "markdown" && (
+                    <div className="flex flex-wrap gap-1 p-2 border rounded-t-md bg-muted/50">
+                      {formatToolbarButtons.map((button) => (
+                        <Button
+                          key={button.action}
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => insertFormatting(button.action)}
+                          title={button.tooltip}
+                        >
+                          <button.icon className="h-4 w-4" />
+                        </Button>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Content Textarea */}
                   <Textarea
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
-                    placeholder="Write your blog post content here... You can use Markdown formatting."
+                    placeholder={
+                      contentFormat === "html"
+                        ? "Write your HTML content here..."
+                        : "Write your blog post content here... You can use Markdown formatting."
+                    }
                     rows={20}
-                    className="rounded-t-none border-t-0 font-mono text-sm"
+                    className={`${contentFormat === "markdown" ? "rounded-t-none border-t-0" : ""} font-mono text-sm`}
                   />
 
                   <div className="text-xs text-muted-foreground mt-2">
-                    Supports Markdown formatting. Use the toolbar buttons or type Markdown directly.
+                    {contentFormat === "html"
+                      ? "HTML mode: your HTML will be stored and rendered as HTML on the blog page."
+                      : "Markdown mode: use the toolbar buttons or type Markdown directly."}
                   </div>
                 </CardContent>
               </Card>
@@ -297,25 +353,42 @@ export default function NewBlogPost() {
                     />
                   )}
                   <h1>{title || "Untitled Post"}</h1>
-                  {excerpt && <p className="lead text-lg text-muted-foreground mb-6">{excerpt}</p>}
-                  <ReactMarkdown
-                    components={{
-                      code({ node, inline, className, children, ...props }) {
-                        const match = /language-(\w+)/.exec(className || "")
-                        return !inline && match ? (
-                          <SyntaxHighlighter style={oneDark} language={match[1]} PreTag="div" {...props}>
-                            {String(children).replace(/\n$/, "")}
-                          </SyntaxHighlighter>
-                        ) : (
-                          <code className={className} {...props}>
-                            {children}
-                          </code>
-                        )
-                      },
-                    }}
-                  >
-                    {content || "No content yet..."}
-                  </ReactMarkdown>
+                  {excerpt && (
+                    <p className="lead text-lg text-muted-foreground mb-6">
+                      {excerpt}
+                    </p>
+                  )}
+                  {contentFormat === "html" ? (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: content || "<p>No content yet...</p>",
+                      }}
+                    />
+                  ) : (
+                    <ReactMarkdown
+                      components={{
+                        code({ inline, className, children, ...props }) {
+                          const match = /language-(\w+)/.exec(className || "");
+                          return !inline && match ? (
+                            <SyntaxHighlighter
+                              style={oneDark}
+                              language={match[1]}
+                              PreTag="div"
+                              {...props}
+                            >
+                              {String(children).replace(/\n$/, "")}
+                            </SyntaxHighlighter>
+                          ) : (
+                            <code className={className} {...props}>
+                              {children}
+                            </code>
+                          );
+                        },
+                      }}
+                    >
+                      {content || "No content yet..."}
+                    </ReactMarkdown>
+                  )}
                 </article>
               </CardContent>
             </Card>
@@ -332,12 +405,20 @@ export default function NewBlogPost() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <Label htmlFor="published">Published</Label>
-                <Switch id="published" checked={published} onCheckedChange={setPublished} />
+                <Switch
+                  id="published"
+                  checked={published}
+                  onCheckedChange={setPublished}
+                />
               </div>
 
               <div className="flex items-center justify-between">
                 <Label htmlFor="featured">Featured</Label>
-                <Switch id="featured" checked={featured} onCheckedChange={setFeatured} />
+                <Switch
+                  id="featured"
+                  checked={featured}
+                  onCheckedChange={setFeatured}
+                />
               </div>
             </CardContent>
           </Card>
@@ -362,9 +443,16 @@ export default function NewBlogPost() {
 
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="flex items-center gap-1">
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="flex items-center gap-1"
+                  >
                     {tag}
-                    <X className="h-3 w-3 cursor-pointer" onClick={() => removeTag(tag)} />
+                    <X
+                      className="h-3 w-3 cursor-pointer"
+                      onClick={() => removeTag(tag)}
+                    />
                   </Badge>
                 ))}
               </div>
@@ -378,10 +466,12 @@ export default function NewBlogPost() {
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               <div>
-                <span className="font-medium">Title length:</span> {title.length}/60
+                <span className="font-medium">Title length:</span>{" "}
+                {title.length}/60
               </div>
               <div>
-                <span className="font-medium">Excerpt length:</span> {excerpt.length}/160
+                <span className="font-medium">Excerpt length:</span>{" "}
+                {excerpt.length}/160
               </div>
               <div>
                 <span className="font-medium">Word count:</span>{" "}
@@ -389,12 +479,16 @@ export default function NewBlogPost() {
               </div>
               <div>
                 <span className="font-medium">Reading time:</span> ~
-                {Math.ceil(content.split(" ").filter((word) => word.length > 0).length / 200)} min
+                {Math.ceil(
+                  content.split(" ").filter((word) => word.length > 0).length /
+                    200,
+                )}{" "}
+                min
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }

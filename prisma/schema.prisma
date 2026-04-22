@@ -11,32 +11,32 @@ datasource db {
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  title       String
-  description String
+  id              String   @id @default(cuid())
+  title           String
+  description     String
   longDescription String?
-  image       String?
-  technologies String[] // Array of technology names
-  githubUrl   String?
-  liveUrl     String?
-  featured    Boolean  @default(false)
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  image           String?
+  technologies    String[] // Array of technology names
+  githubUrl       String?
+  liveUrl         String?
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@map("projects")
 }
 
 model Skill {
-  id          String   @id @default(cuid())
-  name        String   @unique
-  category    String   // Frontend, Backend, DevOps, Database, etc.
-  level       Int      // 1-100 proficiency level
-  icon        String?  // Icon name or URL
-  color       String?  // Hex color for the skill badge
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String   @unique
+  category  String // Frontend, Backend, DevOps, Database, etc.
+  level     Int // 1-100 proficiency level
+  icon      String? // Icon name or URL
+  color     String? // Hex color for the skill badge
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("skills")
 }
@@ -44,11 +44,11 @@ model Skill {
 model Technology {
   id          String   @id @default(cuid())
   name        String   @unique
-  category    String   // Language, Framework, Tool, Database, etc.
+  category    String // Language, Framework, Tool, Database, etc.
   description String?
-  icon        String?  // Icon name or URL
-  color       String?  // Hex color for the technology badge
-  website     String?  // Official website
+  icon        String? // Icon name or URL
+  color       String? // Hex color for the technology badge
+  website     String? // Official website
   featured    Boolean  @default(false)
   order       Int      @default(0)
   createdAt   DateTime @default(now())
@@ -58,37 +58,38 @@ model Technology {
 }
 
 model Certification {
-  id            String   @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String
-  issuer        String   // AWS, Google, Microsoft, etc.
+  issuer        String // AWS, Google, Microsoft, etc.
   description   String?
   credentialId  String?
-  credentialUrl String?  // Link to verify the certification
+  credentialUrl String? // Link to verify the certification
   issueDate     DateTime
   expiryDate    DateTime?
-  image         String?  // Badge image
-  featured      Boolean  @default(false)
-  order         Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  image         String? // Badge image
+  featured      Boolean   @default(false)
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   @@map("certifications")
 }
 
 model BlogPost {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
-  excerpt     String
-  content     String   // Rich text content
-  image       String?
-  published   Boolean  @default(false)
-  featured    Boolean  @default(false)
-  tags        String[] // Array of tags
-  readTime    Int?     // Estimated read time in minutes
-  views       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  title         String
+  slug          String   @unique
+  excerpt       String
+  content       String // Rich text content
+  contentFormat String   @default("markdown") // markdown | html
+  image         String?
+  published     Boolean  @default(false)
+  featured      Boolean  @default(false)
+  tags          String[] // Array of tags
+  readTime      Int? // Estimated read time in minutes
+  views         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("blog_posts")
 }
@@ -126,11 +127,10 @@ model Settings {
   @@map("settings")
 }
 
-
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
-  password  String   // In production, this should be hashed
+  password  String // In production, this should be hashed
   name      String?
   role      String   @default("user") // user, admin, etc.
   image     String?
