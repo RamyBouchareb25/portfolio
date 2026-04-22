@@ -10,6 +10,7 @@ import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { getBlogPostBySlug, getBlogPosts } from "@/app/data/blog";
 import type { Metadata } from "next";
 import sanitizeHtml from "sanitize-html";
+import { HtmlContentSandbox } from "@/components/html-content-sandbox";
 
 // Force dynamic rendering to prevent caching
 export const dynamic = "force-dynamic";
@@ -82,10 +83,48 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           "span",
           "hr",
           "style",
+          "section",
+          "article",
+          "div",
         ]),
         allowedAttributes: {
           a: ["href", "name", "target", "rel"],
           img: ["src", "alt", "title", "width", "height", "loading"],
+          "*": ["class", "id", "style"],
+        },
+        allowedStyles: {
+          "*": {
+            color: [/.*/],
+            backgroundColor: [/.*/],
+            background: [/.*/],
+            padding: [/.*/],
+            margin: [/.*/],
+            border: [/.*/],
+            borderRadius: [/.*/],
+            fontSize: [/.*/],
+            fontWeight: [/.*/],
+            lineHeight: [/.*/],
+            textAlign: [/.*/],
+            display: [/.*/],
+            width: [/.*/],
+            height: [/.*/],
+            maxWidth: [/.*/],
+            minHeight: [/.*/],
+            fontFamily: [/.*/],
+            letterSpacing: [/.*/],
+            textTransform: [/.*/],
+            gap: [/.*/],
+            gridTemplateColumns: [/.*/],
+            position: [/.*/],
+            top: [/.*/],
+            left: [/.*/],
+            right: [/.*/],
+            bottom: [/.*/],
+            overflow: [/.*/],
+            zIndex: [/.*/],
+            counterReset: [/.*/],
+            counterIncrement: [/.*/],
+          },
         },
         allowedSchemes: ["http", "https", "mailto", "tel", "data"],
         transformTags: {
@@ -94,6 +133,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             target: "_blank",
           }),
         },
+        nonTextTags: ["style", "script", "textarea", "noscript"],
       })
     : "";
 
@@ -176,13 +216,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="max-w-4xl mx-auto">
         <div className="prose prose-gray dark:prose-invert max-w-none prose-lg">
           {isHtmlContent ? (
-            <iframe
-              srcDoc={sanitizedContent}
-              className="w-full border-0 rounded-lg"
-              style={{ minHeight: "400px" }}
-              title="Blog post content"
-              sandbox="allow-same-origin"
-            />
+            <HtmlContentSandbox html={sanitizedContent} />
           ) : (
             <ReactMarkdown
               components={{

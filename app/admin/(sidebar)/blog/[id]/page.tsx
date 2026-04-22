@@ -426,12 +426,10 @@ export default function EditBlogPost() {
                     </p>
                   )}
                   {contentFormat === "html" ? (
-                    <iframe
-                      srcDoc={content || "<p>No content yet...</p>"}
-                      className="w-full border-0 rounded-lg"
-                      style={{ minHeight: "400px" }}
-                      title="Blog post preview"
-                      sandbox="allow-same-origin"
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: content || "<p>No content yet...</p>",
+                      }}
                     />
                   ) : (
                     <ReactMarkdown

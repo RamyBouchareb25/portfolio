@@ -34,6 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { HtmlContentSandbox } from "@/components/html-content-sandbox";
 
 export default function NewBlogPost() {
   const [title, setTitle] = useState("");
@@ -359,12 +360,8 @@ export default function NewBlogPost() {
                     </p>
                   )}
                   {contentFormat === "html" ? (
-                    <iframe
-                      srcDoc={content || "<p>No content yet...</p>"}
-                      className="w-full border-0 rounded-lg"
-                      style={{ minHeight: "400px" }}
-                      title="Blog post preview"
-                      sandbox="allow-same-origin"
+                    <HtmlContentSandbox
+                      html={content || "<p>No content yet...</p>"}
                     />
                   ) : (
                     <ReactMarkdown
