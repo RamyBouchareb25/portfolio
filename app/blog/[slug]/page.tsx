@@ -81,6 +81,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           "h6",
           "span",
           "hr",
+          "style",
         ]),
         allowedAttributes: {
           a: ["href", "name", "target", "rel"],
@@ -175,7 +176,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="max-w-4xl mx-auto">
         <div className="prose prose-gray dark:prose-invert max-w-none prose-lg">
           {isHtmlContent ? (
-            <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+            <iframe
+              srcDoc={sanitizedContent}
+              className="w-full border-0 rounded-lg"
+              style={{ minHeight: "400px" }}
+              title="Blog post content"
+              sandbox="allow-same-origin"
+            />
           ) : (
             <ReactMarkdown
               components={{

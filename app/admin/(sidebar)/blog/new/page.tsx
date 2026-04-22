@@ -359,10 +359,12 @@ export default function NewBlogPost() {
                     </p>
                   )}
                   {contentFormat === "html" ? (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: content || "<p>No content yet...</p>",
-                      }}
+                    <iframe
+                      srcDoc={content || "<p>No content yet...</p>"}
+                      className="w-full border-0 rounded-lg"
+                      style={{ minHeight: "400px" }}
+                      title="Blog post preview"
+                      sandbox="allow-same-origin"
                     />
                   ) : (
                     <ReactMarkdown
